@@ -1,5 +1,4 @@
-
-#SDL main
+#SDL
 SDL_MAIN_DOWNLOAD = https://www.libsdl.org/release/SDL2-2.0.8.tar.gz
 SDL_IMAGE_DOWNLOAD = https://www.libsdl.org/projects/SDL_image/release/SDL2_image-2.0.3.tar.gz
 
@@ -36,11 +35,12 @@ clean:
 
 fclean:clean
 	rm -rf $(NAME)
-	rm -rf ./sdl_main/
-	rm -rf ./sdl_image/
+	#rm -rf ./sdl_main/
+	#rm -rf ./sdl_image/
 
+re:fclean $(NAME)
 
-.PHONY: all clean fclean lib
+.PHONY: all clean fclean re lib
 
 lib: sdl_main sdl_image
 
@@ -80,3 +80,18 @@ sdl_image:
 	fi
 
 
+norme:clear
+		@echo "La norme\n";
+			norminette $(SRC_Dir)
+
+exe:
+		./$(NAME)
+
+clear:
+		clear
+
+line:clear
+		find ./srcs -name '*.c' | xargs wc -l
+
+tag:
+		ctags -R .
