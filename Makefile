@@ -16,18 +16,19 @@ INCLUDE =	-I ./include/ \
 
 DSRC = ./source/
 DOBJ = ./objet/
-OBJS = $(addprefix $(DOBJ)/, $(OBJ))
-SRCS = $(addprefix $(DSRC)/, $(SRC))
+OBJS = $(addprefix $(DOBJ), $(OBJ))
+SRCS = $(addprefix $(DSRC), $(SRC))
 
 
-$(DOBJS)%.o:$(DSRC)%.c
+$(DOBJ)%.o:$(DSRC)%.c
+	@mkdir $(OBJ_Dir) 2> /dev/null || true
 	gcc -c $< -o $@ $(INCLUDE) $(FLAG)
 
 
 all: $(NAME) lib
 
-$(NAME): $(OBJ)
-	gcc -o $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	gcc -o $(NAME) $(OBJS)
 
 
 clean:
