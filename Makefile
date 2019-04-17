@@ -20,11 +20,11 @@ SRCS = $(addprefix $(DSRC), $(SRC))
 
 
 $(DOBJ)%.o:$(DSRC)%.c
-	@mkdir $(OBJ_Dir) 2> /dev/null || true
+	mkdir $(DOBJ) 2> /dev/null || true
 	gcc -c $< -o $@ $(INCLUDE) $(FLAG)
 
 
-all: $(NAME) lib
+all: lib $(NAME) 
 
 $(NAME): $(OBJS)
 	gcc -o $(NAME) $(OBJS)

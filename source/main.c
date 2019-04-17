@@ -15,6 +15,5 @@
 int		main(void)
 {
 	printf("Hello\n");
-	ft_init();
 	return (1);
 }
