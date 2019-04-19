@@ -21,7 +21,10 @@ void	ft_init_window(void)
 							SDL_WINDOWPOS_CENTERED,
 							400, 600, SDL_WINDOW_SHOWN);
 	SDL_Renderer *renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_SOFTWARE);
+	//SDL_SetRenderDrawColor(renderer, 0, 0, 0, 100);
+	//SDL_RenderClear(renderer);
 	SDL_RenderPresent(renderer);
+	SDL_Delay(9000);
 
 
 }
@@ -29,6 +32,7 @@ void	ft_init_window(void)
 
 int		main(void)
 {
+	ft_init_window();
 	printf("Hello\n");
 	return (1);
 }

@@ -20,8 +20,8 @@ SRCS = $(addprefix $(DSRC), $(SRC))
 
 
 
-LFLAG		=		-L ./sdl_main/SDL2-2.0.8/bin/ -lSDL2 \
-					-L ./sdl_image/SDL2_image-2.0.3/bin  -lSDL2_image
+LFLAG		=		-L sdl_main/SDL2-2.0.8/lib  -lSDL2 \
+					-L ./sdl_image/SDL2_image-2.0.3/lib -lSDL2_image
 
 
 $(DOBJ)%.o:$(DSRC)%.c
@@ -31,7 +31,7 @@ $(DOBJ)%.o:$(DSRC)%.c
 all: lib $(NAME)
 
 $(NAME): $(OBJS)
-	gcc -o $(NAME) $(OBJS) $(CFLAG) $(LFLAG)
+	gcc -o $(NAME) $(OBJS) $(CFLAG) $(LFLAG) -lSDL2 -lSDL2_image
 
 
 clean:
