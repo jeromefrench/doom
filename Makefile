@@ -6,8 +6,8 @@ SDL_IMAGE_DOWNLOAD = https://www.libsdl.org/projects/SDL_image/release/SDL2_imag
 NAME = doom
 SRC = main.c
 OBJ = $(SRC:.c=.o)
-FLAG = -Wall -Wextra -Werror
 
+CFLAG = -Wall -Wextra -Werror
 
 INCLUDE =	-I ./include/ \
 			-I ./sdl_image/SDL2_image-2.0.3/include/  \
@@ -19,15 +19,19 @@ OBJS = $(addprefix $(DOBJ), $(OBJ))
 SRCS = $(addprefix $(DSRC), $(SRC))
 
 
+
+LFLAG		=		-L ./sdl_main/SDL2-2.0.8/bin/ -lSDL2 \
+					-L ./sdl_image/SDL2_image-2.0.3/bin  -lSDL2_image
+
+
 $(DOBJ)%.o:$(DSRC)%.c
 	mkdir $(DOBJ) 2> /dev/null || true
-	gcc -c $< -o $@ $(INCLUDE) $(FLAG)
+	gcc -c $< -o $@ $(INCLUDE) $(CFLAG)
 
-
-all: lib $(NAME) 
+all: lib $(NAME)
 
 $(NAME): $(OBJS)
-	gcc -o $(NAME) $(OBJS)
+	gcc -o $(NAME) $(OBJS) $(CFLAG) $(LFLAG)
 
 
 clean:
